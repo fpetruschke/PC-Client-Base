@@ -107,11 +107,13 @@ class DesktopPlayer extends Player{
 		$pk->payload = $payload;
 		$pk->primaryBitmap = 0xff;
 		$this->putRawPacket($pk);
+		
 		foreach($this->level->getChunkTiles($x, $z) as $tile){
 			if($tile instanceof Sign){
 				$tile->spawnTo($this);
 			}
 		}
+		
 		if($this->spawned){
 			foreach($this->level->getChunkPlayers($x, $z) as $player){
 				$player->spawnTo($this);
@@ -123,6 +125,7 @@ class DesktopPlayer extends Player{
 			}*/
 		}
 	}
+	
 	protected function sendNextChunk(){
 		if($this->connected === false){
 			return;
@@ -151,6 +154,7 @@ class DesktopPlayer extends Player{
 			$this->bigBrother_sendChunk($X, $Z, $chunk->getData());
 			$chunk = null;
 		}
+		
 		if($this->chunkLoadCount >= 4 and $this->spawned === false and $this->teleportPosition === null){
 			/*$this->doFirstSpawn();
 			$this->inventory->sendContents($this);
@@ -256,7 +260,6 @@ class DesktopPlayer extends Player{
 				$pk->metadata = $this->getData();
 				$pk->data = $this->bigBrother_properties;
 				$player->putRawPacket($pk);
-
 				$pk = new EntityTeleportPacket();
 				$pk->eid = $this->getID();
 				$pk->x = $this->x;
@@ -265,16 +268,13 @@ class DesktopPlayer extends Player{
 				$pk->yaw = $this->yaw;
 				$pk->pitch = $this->pitch;
 				$player->putRawPacket($pk);
-
 				$pk = new SetEntityMotionPacket();
 				$pk->eid = $this->getID();
 				$pk->speedX = $this->motionX;
 				$pk->speedY = $this->motionY;
 				$pk->speedZ = $this->motionZ;
 				$player->dataPacket($pk);
-
 				$this->inventory->sendHeldItem($player);
-
 				$this->inventory->sendArmorContents($player);
 			}
 		}else{
@@ -349,7 +349,6 @@ class DesktopPlayer extends Player{
 			}
 			$pk->skin = $skin;
 		}
-
 		$this->handleDataPacket($pk);
 	}
 	public function getSkinImage($url){
@@ -422,20 +421,24 @@ class DesktopPlayer extends Player{
 	public function getSettings(){
 		return $this->Settings;
 	}
+	
 	public function getSetting($settingname = null){
 		if(isset($this->Settings[$settingname])){
 			return $this->Settings[$settingname];
 		}
 		return false;
 	}
+	
 	public function setSetting($settings){
 		$this->Settings = array_merge($this->Settings, $settings);
 	}
+	
 	public function removeSetting($settingname){
 		if(isset($this->Settings[$settingname])){
 			unset($this->Settings[$settingname]);
 		}
 	}
+	
 	public function cleanSetting($settingname){
 		unset($this->Settings[$settingname]);
 	}
