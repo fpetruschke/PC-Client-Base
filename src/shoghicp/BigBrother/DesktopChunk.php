@@ -22,14 +22,10 @@ class DesktopChunk{
 		$chunkblockData = $chunk->getBlockDataArray();
 		$chunkblockSkyLight = $chunk->getBlockSkyLightArray();
 		$chunkblockLight = $chunk->getBlockLightArray();
-
 		$chunkbiomeIds = $chunk->getBiomeIdArray();
-
 		$compressionLevel = Level::$COMPRESSION_LEVEL;
-
 		$ids = ["", "", "", "", "", "", "", ""];
 		$blockLight = $skyLight = [[], [], [], [], [], [], [], []];
-
 		//Complexity: O(MG)
 		for($Y = 0; $Y < 8; ++$Y){
 			for($y = 0; $y < 16; ++$y){
@@ -90,5 +86,4 @@ class DesktopChunk{
 		}
 		return null;
 	}
-
 }
