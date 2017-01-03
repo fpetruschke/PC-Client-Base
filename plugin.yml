@@ -1,8 +1,7 @@
 name: BigBrother
-version: 1.15.0 beta
+main: shoghicp\BigBrother\BigBrother
+version: 1.0.0
 api: 2.0.0
 description: "Allows the connection of Minecraft: PC clients to PocketMine-MP servers"
-author: shoghicp
-website: https://github.com/shoghicp/BigBrother
-load: STARTUP
-main: shoghicp\BigBrother\BigBrother
+author: shoghicp, UniversalMine
+website: https://github.com/UniversalMine/PC-Client-Base/
