@@ -43,18 +43,14 @@ class BigBrother extends PluginBase implements Listener{
 
 	/** @var RSA */
 	protected $rsa;
-
 	protected $privateKey;
-
 	protected $publicKey;
-
 	protected $onlineMode;
 
 	/** @var Translator */
 	protected $translator;
 
 	public function onLoad(){
-
 		class_exists("phpseclib\\Math\\BigInteger", true);
 		class_exists("phpseclib\\Crypt\\Random", true);
 		class_exists("phpseclib\\Crypt\\Base", true);
@@ -63,13 +59,11 @@ class BigBrother extends PluginBase implements Listener{
 	}
 
 	public function onEnable(){
-
 		$this->saveDefaultConfig();
 		$this->saveResource("server-icon.png", false);
 		$this->saveResource("alex.yml", false);
 		$this->saveResource("steve.yml", false);
 		$this->reloadConfig();
-
 		$this->onlineMode = (bool) $this->getConfig()->get("online-mode");
 		if($this->onlineMode and !function_exists("mcrypt_generic_init")){
 			$this->onlineMode = false;
@@ -79,7 +73,7 @@ class BigBrother extends PluginBase implements Listener{
 		if(!$this->getConfig()->exists("motd")){
 			$this->getLogger()->warning("No motd has been set. The server description will be empty.");
 		}
-
+		
 		$this->translator = new TranslatorProtocol();
 		$this->rsa = new RSA();
 
@@ -172,5 +166,4 @@ class BigBrother extends PluginBase implements Listener{
 			$player->putRawPacket($pk);
 		}
 	}
-
 }
