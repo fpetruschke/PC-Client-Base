@@ -74,11 +74,9 @@ class Binary extends \pocketmine\utils\Binary{
 				case 8:
 					$m .= self::writeLong($d[1]);
 					break;
-
 			}
 		}
 		$m .= "\x7f";
-
 		return $m;
 	}
 
@@ -100,8 +98,6 @@ class Binary extends \pocketmine\utils\Binary{
 	public static function readVarIntSession(Session $session, &$offset = 0){
 		$number = 0;
 		$shift = 0;
-
-
 		while(true){
 			$b = $session->read(1);
 			$c = ord($b);
